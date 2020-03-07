@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModelBase="clr-namespace:SR.Bertoni.Test.ViewModels.Base;assembly=SR.Bertoni.Test"
+             mc:Ignorable="d"
+             Title="My Task"
+             x:Class="SR.Bertoni.Test.Views.TaskDetailView"
+             viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding DeleteCommand}"
+            Text="Delete" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Name" Text="{Binding Task.Name}"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Completed: "/>
+                <Switch IsToggled="{Binding Task.Status}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Save" Command="{Binding SaveCommand}"/>
+                <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

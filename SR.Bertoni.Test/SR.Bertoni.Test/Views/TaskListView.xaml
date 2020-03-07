@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SR.Bertoni.Test.Views.TaskListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:SR.Bertoni.Test.ViewModels.Base;assembly=SR.Bertoni.Test"
+    xmlns:task="clr-namespace:SR.Bertoni.Test.Models.Task"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    Title="My Tasks">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding AddTaskCommand}"
+            Text="Add" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding TaskList}" SelectedItem="{Binding SelectedTask}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="task:TaskModel">
+                        <ViewCell>
+                            <StackLayout Margin="5,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label FontSize="Title" HorizontalOptions="FillAndExpand" Text="{Binding Name}" />
+                                <Label FontSize="Medium" HorizontalOptions="End" TextColor="{Binding Status, Converter={StaticResource BoolStatusColorConverter}}" Text="{Binding Status, Converter={StaticResource BoolStatusConverter}}" FontAttributes="Bold" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
